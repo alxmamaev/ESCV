@@ -2,6 +2,8 @@
 import os
 import socket 
 
+# Здесь коментарии излишни
+
 def main():
     print("Добро пожаловать в программу для работы с ЭСУПv3")
     print("Сервер запущен на адресе: %s"%socket.gethostbyname_ex(socket.gethostname())[2][1])
