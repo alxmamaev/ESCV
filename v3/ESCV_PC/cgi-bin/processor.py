@@ -8,9 +8,6 @@ import time
 import codecs
 
 def add_entry(user_name):
-    # Выводим приветствие пользователя в качестве ответа на запрос (необходимо только для тестирования)
-    print("Content-type: text/html\n")
-    print("Hello: "+user_name) 
     
     # Подготавливаем необходмые реесурсы для вставки в таблицу
     user_time = ":".join(map(str,time.localtime()[3:5])) 
@@ -63,7 +60,7 @@ def main():
     if rfid_id is None:
         add_entry("Test_User")
     else:
-        data_base = open(config.data_base,"r").readlines()
+        data_base = codecs.open(config.data_base,"r","utf-8").readlines()
         
         # Ищем пользователя по базе данных (представленной в виде текстового файла)
         # И добавляем пользователя в таблицу
