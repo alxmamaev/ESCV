@@ -37,10 +37,10 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 byte Ethernet::buffer[700];
 
 // Адрес сайта на который будем стучаться (в моем случае он запускается на одном с сервером IP) 
-const char website[] PROGMEM = "192.168.0.104";
+const char website[] PROGMEM = "192.168.0.104"; //Замените на ip адрес вашего компьютера
 
 // IP адрес сервера.
-static byte websiteip[] = { 192,168,0,104 };
+static byte websiteip[] = { 192,168,0,104 }; //Замените на ip адрес вашего компьютера
 
 //Мак-адрес устройства
 static byte mac[] = { 0x74,0x69,0x69,0x2D,0x30,0x31 };
