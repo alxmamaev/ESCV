@@ -83,9 +83,17 @@ void send_package(){
 
 //Получение id с RFID карты и запись в rfid_id
 void get_rfid_id(byte *buffer) {
+    // Данные в буффере rfid модуля храняться в виде байтов, фактически числа от 0 до 255, но для более удобочитаемого вида будем записывать в String в hex формате
+    String  hex_rfid_id;
+
+    //Читаем данные из буффера и записываем в hex_rfid_id в шеснадцатиричной системе счисления
     for (byte i = 0; i <= 9; i++) {
-       rfid_id[i] = char(buffer[i]);
+      hex_rfid_id += buffer[i] < 0x10 ? "0" : ""; 
+      hex_rfid_id += String(buffer[i],HEX);
     }
+
+    //Эти данные нам будет необходимо отправить в буффер, поэтому наш String необходимо преобразовать в массив символов
+    hex_rfid_id.toCharArray(rfid_id,[9]);
 }
 
 void setup () {
