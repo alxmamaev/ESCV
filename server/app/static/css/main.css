@@ -1,0 +1,13 @@
+body {
+	color: #fff;
+}
+/*Helpers class*/
+.divider-vertical {
+	width: 10px;
+	height: inherit;
+}
+
+/* Sections*/
+#main-section {
+
+}
