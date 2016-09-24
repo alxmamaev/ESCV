@@ -4,5 +4,4 @@ from flask import render_template
 
 @app.route("/")
 def index():
-    #render_template("шаблон.jade")
-    pass
+    return render_template("index.jade")

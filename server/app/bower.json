@@ -6,7 +6,7 @@
     "AZbang",
     "AlxMamaev"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0",
   "homepage": "https://github.com/alxmamaev/ESCV",
   "ignore": [
     "**/.*",
