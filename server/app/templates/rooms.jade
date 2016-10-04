@@ -5,93 +5,14 @@ block content
 		section(id="main-section", class="teal lighten-2 section")
 			.container
 				.row
-					h1 ROOMS
+					h1.text-white ROOMS
+					
+					ul.collection
+						each room in rooms
 
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
+							a(href="rooms/#{room.id}")
+								li.collection-item.avatar
 
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
-					.col.s6
-						ul.collection
-							li.collection-item.avatar
-
-								img(src="../static/img/stolovka.jpg", alt="", class="circle")
-								span.title The best dining room in the world!
-
-								p Burgers... With Pasta?!
-
-								a(href="#!" class="secondary-content")
-									i.material-icons grade
+									img(src=room.img, alt="room", class="circle")
+									span.title= room.label
+									p= room.description
