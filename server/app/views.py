@@ -1,16 +1,9 @@
 # -*- coding: utf-8 ?
 from app import app
 from flask import render_template
+from app import base
 
 # Типа база данных =D
-peopleData = [
-	{
-		"id": 0,
-		"img": "../static/img/nevskiy!.jpg",
-		"name": "Alx Nevskiy!",
-		"description": "Do you speak Engish?"
-	}
-]
 roomsData = [
 	{
 		"id": 0,
@@ -25,18 +18,18 @@ roomsData = [
 def index():
     return render_template("index.jade")
 
-@app.route("/people")
-def people():
-    return render_template("people.jade", people = peopleData)
+@app.route("/user/<int:user_id>")
+def user(user_id):
+    return render_template("user.jade", user = base.user_info(user_id))
+
+
+@app.route("/users")
+def users():
+    return render_template("users.jade", users = base.users_list())
 
 @app.route("/rooms")
 def rooms():
     return render_template("rooms.jade", rooms = roomsData)
-
-@app.route("/people")
-@app.route("/people/<int:man>")
-def man(man):
-    return render_template("man.jade", man = peopleData[man])
 
 @app.route("/rooms")
 @app.route("/rooms/<int:room>")

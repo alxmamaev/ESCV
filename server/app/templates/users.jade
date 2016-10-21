@@ -1,0 +1,16 @@
+extends ./patterns/layout.jade
+
+block content
+	.wrap
+		section(id="main-section", class="teal lighten-2 section")
+			.container
+				.row
+					h1.text-white ЛЮДИ
+
+					ul.collection
+						each user in users
+							a(href="user/#{user.id}")
+								li.collection-item.avatar
+									img(src=user.img, alt="user", class="circle")
+									span.title= user.name
+									p= user.description

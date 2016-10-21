@@ -1,0 +1,39 @@
+extends ./patterns/layout.jade
+
+block content
+	.wrap
+		section(id="main-section", class="teal lighten-2 section")
+			.container
+				.row
+					.col.s4
+						.avatar-img.circle(style="background-image: url(#{user.img});")
+
+					.col.s8
+						h1.text-white= user.name
+						h4.text-white= user.description
+
+		section(id="table-section", class="indigo lighten-5 section")
+			.container
+				.row
+					h1.text-black TABLE
+					
+					table.centered.highlight
+						thead
+							tr
+								th Комната
+								th Время
+								th Дата
+
+						tbody
+							tr
+								td Колоночка
+								td И еще одна
+								td И еще...
+							tr
+								td Больше Колоночек
+								td Еще больше!
+								td О даааа, больше!
+							tr
+								td Даааааа, это великолепно
+								td Больше колоночек!
+								td БОЛЬШЕ!
