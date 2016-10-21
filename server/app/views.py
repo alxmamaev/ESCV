@@ -3,17 +3,6 @@ from app import app
 from flask import render_template
 from app import base
 
-# Типа база данных =D
-roomsData = [
-	{
-		"id": 0,
-		"img": "../static/img/stolovka.jpg",
-		"label": "The best dining room in the world!",
-		"description": "Burgers... With Pasta?!"
-	}
-]
-# Конец типа базы данных
-
 @app.route("/")
 def index():
     return render_template("index.jade")
@@ -29,9 +18,8 @@ def users():
 
 @app.route("/rooms")
 def rooms():
-    return render_template("rooms.jade", rooms = roomsData)
+    return render_template("rooms.jade", rooms = base.rooms_list())
 
-@app.route("/rooms")
-@app.route("/rooms/<int:room>")
-def room(room):
-    return render_template("room.jade", room = roomsData[room])
+@app.route("/rooms/<int:room_id>")
+def room(room_id):
+    return render_template("room.jade", room = base.room_info(room_id))
