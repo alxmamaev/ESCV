@@ -17,23 +17,19 @@ block content
 				.row
 					h1.text-black TABLE
 					
-					table.highlight
+					table.centered.highlight
 						thead
 							tr
-								th Что-то
-								th Очень
-								th Важное
+								th Клиент
+								th Время
+								th Дата
 
 						tbody
-							tr
-								td Колоночка
-								td И еще одна
-								td И еще...
-							tr
-								td Больше Колоночек
-								td Еще больше!
-								td О даааа, больше!
-							tr
-								td Даааааа, это великолепно
-								td Больше колоночек!
-								td БОЛЬШЕ!
+							each list in visit_list
+								tr
+									td
+										= list.user
+									td
+										= list.time
+									td
+										= list.date
