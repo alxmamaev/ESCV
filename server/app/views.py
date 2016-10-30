@@ -3,16 +3,6 @@ from app import app
 from flask import render_template, request
 from app import base
 
-debug_user_list = [{
-	"room": "Столовка",
-	"time": "14:13",
-	"date": "25.10.2016"
-}]
-debug_room_list = [{
-	"user": "Андрей Жевлаков",
-	"time": "14:13",
-	"date": "25.10.2016"
-}]
 
 @app.route("/")
 def index():
@@ -36,3 +26,16 @@ def room(room_id):
     return render_template("room.jade", room = base.room_info(room_id),
                            visit_list = base.room_visits(room_id))
 
+
+@app.route("/new_visit", methods = ["POST"])
+def new_visit():
+    rfid_id = request.form.get("rfid_id")
+    room_id = request.form.get("room_id")
+        
+    if rfid_id is None or room_id is None:
+        return "Opps",404        
+    
+    req = base.new_visit(rfid_id, room_id)
+    app.logger.info(req)
+    
+    return "Ok",200
