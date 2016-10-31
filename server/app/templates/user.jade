@@ -2,6 +2,14 @@ extends ./patterns/layout.jade
 
 block content
 	.wrap
+		nav
+			.nav-wrapper
+				.center
+					a(href="/").breadcrumb ESCV
+					a(href="/users").breadcrumb Users
+					a(href="#").breadcrumb User
+
+
 		section(id="main-section", class="teal lighten-2 section")
 			.container
 				.row
@@ -27,9 +35,6 @@ block content
 						tbody
 							each list in visit_list
 								tr
-									td
-										= list.room
-									td
-										= list.time
-									td
-										= list.date
+									td= list.room
+									td= list.time
+									td= list.date
