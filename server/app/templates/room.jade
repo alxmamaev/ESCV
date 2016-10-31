@@ -22,7 +22,14 @@ block content
 		section(id="table-section", class="indigo lighten-5 section")
 			.container
 				.row
-					h1.text-black TABLE
+					.col.s3
+						h1.text-black TABLE
+
+					.col.s9
+						form(method="get")
+							input(name="date", type="date", value=date, max=date)
+							button.btn.waves-effect.waves-light(type="submit") Select
+								i.material-icons.right send
 					
 					table.centered.highlight
 						thead

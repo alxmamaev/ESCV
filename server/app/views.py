@@ -15,7 +15,8 @@ def users():
 @app.route("/user/<int:user_id>")
 def user(user_id):
     return render_template("user.jade", user = base.user_info(user_id), 
-                           visit_list = base.user_visits(user_id))
+                           visit_list = base.user_visits(user_id),
+                           date = "2016-10-31")
 
 @app.route("/rooms")
 def rooms():
@@ -24,7 +25,8 @@ def rooms():
 @app.route("/rooms/<int:room_id>")
 def room(room_id):
     return render_template("room.jade", room = base.room_info(room_id),
-                           visit_list = base.room_visits(room_id))
+                           visit_list = base.room_visits(room_id),
+                           date = "2016-10-31")
 
 
 @app.route("/new_visit", methods = ["POST"])
