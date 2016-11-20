@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*- ?
 import sqlite3 as sqlite
 import config
+from app import app
 import time
+import logging
+import pandas
 
-def user_visits(user_id):
+def user_visits(user_id, date):
     db = sqlite.connect("escv.db")
     cur = db.cursor()
-    cur.execute("SELECT * FROM visits WHERE user_id=%s" % user_id)
+    
+    cur.execute("SELECT * FROM visits WHERE user_id=%s AND date=\"%s\"" % (user_id, date))
     rows = cur.fetchall()
     row_labels = ["user_id","room_id", "date", "time"]
     visits = []
@@ -14,6 +18,8 @@ def user_visits(user_id):
     for row in rows:
         visit = dict(zip(row_labels, row))
         visit["room"] = room_info(visit["room_id"])["name"]
+        visit["date"] = ".".join(visit["date"].split("-")[::-1])
+
         visits.append(visit)
         
     return visits
@@ -79,10 +85,10 @@ def room_info(room_id):
     return room
 
 
-def room_visits(room_id):
+def room_visits(room_id, date):
     db = sqlite.connect("escv.db")
     cur = db.cursor()
-    cur.execute("SELECT * FROM visits WHERE room_id=%s" % room_id)
+    cur.execute("SELECT * FROM visits WHERE room_id=%s AND date=\"%s\"" % (room_id, date))
     rows = cur.fetchall()
     row_labels = ["user_id","room_id", "date", "time"]
     visits = []
@@ -90,16 +96,18 @@ def room_visits(room_id):
     for row in rows:
         visit = dict(zip(row_labels, row))
         visit["user"] = user_info(visit["user_id"])["name"]
+        visit["date"] = ".".join(visit["date"].split("-")[::-1])        
         visits.append(visit)
         
     return visits
+
 
 def new_visit(rfid_id, room_id):
     db = sqlite.connect("escv.db")
     cur = db.cursor()
     
     visit_time = time.strftime("%H:%M") 
-    visit_date = time.strftime("%d.%m.%y")
+    visit_date = time.strftime("%Y-%m-%d")
     
     cur.execute("SELECT id FROM users WHERE rfid_id = %s" % rfid_id)
     user_id = cur.fetchone()
