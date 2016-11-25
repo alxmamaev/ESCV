@@ -3,9 +3,6 @@
   "version": "4.0.0",
   "description": "The electronic system of calculation of visitors",
   "main": "./",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "AZbang, AlxMamaev",
   "license": "GPL-3.0"
 }
