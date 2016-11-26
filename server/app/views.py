@@ -36,14 +36,20 @@ def new_visit():
     if request.method == "POST":
         rfid_id = request.form.get("rfid_id")
         room_id = request.form.get("room_id")
+        user_id = request.form.get("user_id")
     else:
         rfid_id = request.args.get("rfid_id")
         room_id = request.args.get("room_id")        
+        user_id = request.args.get("user_id")
             
-    if rfid_id is None or room_id is None:
+    if (rfid_id is None and user_id is None) or room_id is None:
         return "Opps",404        
+ 
+    if rfid_id is not None: req = base.new_visit(rfid_id = rfid_id,room_id = room_id)
+    else: 
+        app.logger.info(user_id)
+        req = base.new_visit(user_id = user_id,room_id = room_id)
     
-    req = base.new_visit(rfid_id, room_id)
     app.logger.info(req)
     
     return "Ok",200

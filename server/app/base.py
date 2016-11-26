@@ -102,20 +102,22 @@ def room_visits(room_id, date):
     return visits
 
 
-def new_visit(rfid_id, room_id):
+def new_visit(user_id=None, rfid_id=None, room_id=None):
     db = sqlite.connect("escv.db")
     cur = db.cursor()
     
     visit_time = time.strftime("%H:%M") 
     visit_date = time.strftime("%Y-%m-%d")
     
-    cur.execute("SELECT id FROM users WHERE rfid_id = %s" % rfid_id)
-    user_id = cur.fetchone()
-    if user_id is not None: user_id = user_id[0]
-    else: return 1
+    if user_id is None:
+        cur.execute("SELECT id FROM users WHERE rfid_id = %s" % rfid_id)
+        user_id = cur.fetchone()
+        if user_id is not None: user_id = user_id[0]
+        else: return 1     
     
     with db:
         cur.execute("INSERT INTO visits VALUES(?,?,?,?)", (user_id, room_id, 
                                                            visit_date, visit_time))
 
-    return "|%s|%s|%s|%s|" % (rfid_id, room_id, visit_date, visit_time)
+    return "|rfid:%s|user:%s|room:%s|date:%s|time:%s|" % (rfid_id, user_id, room_id, 
+                                                               visit_date, visit_time)
