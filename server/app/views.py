@@ -2,7 +2,7 @@
 from app import app
 from flask import render_template, request
 from app import base
-
+import time
 
 @app.route("/")
 def index():
@@ -17,7 +17,7 @@ def user(user_id):
     date = request.args.get("date")    
     return render_template("user.jade", user = base.user_info(user_id), 
                            visit_list = base.user_visits(user_id, date),
-                           date = date)
+                           date = time.strftime("%Y-%m-%d"))
 
 @app.route("/rooms")
 def rooms():
@@ -28,7 +28,7 @@ def room(room_id):
     date = request.args.get("date")    
     return render_template("room.jade", room = base.room_info(room_id),
                            visit_list = base.room_visits(room_id, date),
-                           date = date)
+                           date = time.strftime("%Y-%m-%d"))
 
 
 @app.route("/new_visit")
