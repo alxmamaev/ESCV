@@ -17,7 +17,8 @@ def user(user_id):
     date = request.args.get("date")    
     return render_template("user.jade", user = base.user_info(user_id), 
                            visit_list = base.user_visits(user_id, date),
-                           date = time.strftime("%Y-%m-%d"))
+                           cur_date = time.strftime("%Y-%m-%d"),
+                           query_date = date)
 
 @app.route("/rooms")
 def rooms():
@@ -28,7 +29,8 @@ def room(room_id):
     date = request.args.get("date")    
     return render_template("room.jade", room = base.room_info(room_id),
                            visit_list = base.room_visits(room_id, date),
-                           date = time.strftime("%Y-%m-%d"))
+                           cur_date = time.strftime("%Y-%m-%d"),
+                           query_date = date)
 
 
 @app.route("/new_visit")
@@ -46,9 +48,7 @@ def new_visit():
         return "Opps",404        
  
     if rfid_id is not None: req = base.new_visit(rfid_id = rfid_id,room_id = room_id)
-    else: 
-        app.logger.info(user_id)
-        req = base.new_visit(user_id = user_id,room_id = room_id)
+    else: req = base.new_visit(user_id = user_id,room_id = room_id)
     
     app.logger.info(req)
     
