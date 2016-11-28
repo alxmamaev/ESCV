@@ -1,0 +1,9 @@
+form(method="get")
+	
+	if query_date
+		input(name="date", type="date", value=query_date, max=cur_date)
+	else
+		input(name="date", type="date", value=cur_date, max=cur_date)
+
+	button.btn.waves-effect.waves-light(type="submit") Select
+		i.material-icons.right send

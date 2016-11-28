@@ -26,10 +26,7 @@ block content
 						h1.text-black TABLE
 
 					.col.s9
-						form(method="get")
-							input(name="date", type="date", value=date, max=date)
-							button.btn.waves-effect.waves-light(type="submit") Select
-								i.material-icons.right send
+						include ./patterns/form_date.jade
 					
 					table.centered.highlight
 						thead
