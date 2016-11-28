@@ -14,11 +14,13 @@ def users():
 
 @app.route("/user/<int:user_id>")
 def user(user_id):
-    date = request.args.get("date")    
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
     return render_template("user.jade", user = base.user_info(user_id), 
-                           visit_list = base.user_visits(user_id, date),
+                           visit_list = base.user_visits(user_id, start_date, end_date),
                            cur_date = time.strftime("%Y-%m-%d"),
-                           query_date = date)
+                           start_date = start_date,
+                           end_date = end_date)
 
 @app.route("/rooms")
 def rooms():
@@ -26,11 +28,13 @@ def rooms():
 
 @app.route("/rooms/<int:room_id>")
 def room(room_id):
-    date = request.args.get("date")    
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
     return render_template("room.jade", room = base.room_info(room_id),
-                           visit_list = base.room_visits(room_id, date),
+                           visit_list = base.room_visits(room_id, start_date, end_date),
                            cur_date = time.strftime("%Y-%m-%d"),
-                           query_date = date)
+                           start_date = start_date,
+                           end_date = end_date)
 
 
 @app.route("/new_visit")
