@@ -28,16 +28,16 @@ block content
 					.col.s9
 						include ./patterns/form_date.jade
 					
-					table.centered.highlight
-						thead
-							tr
-								th Комната
-								th Время
-								th Дата
+				table.centered.highlight
+					thead
+						tr
+							th Комната
+							th Время
+							th Дата
 
-						tbody
-							each list in visit_list
-								tr
-									td= list.room
-									td= list.time
-									td= list.date
+					tbody
+						each list in visit_list
+							tr
+								td= list.room
+								td= list.time
+								td= list.date

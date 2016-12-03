@@ -24,20 +24,20 @@ block content
 				.row
 					.col.s3
 						h1.text-black TABLE
-
+					
 					.col.s9
 						include ./patterns/form_date.jade
 					
-					table.centered.highlight
-						thead
-							tr
-								th Клиент
-								th Время
-								th Дата
+				table.centered.highlight
+					thead
+						tr
+							th Клиент
+							th Время
+							th Дата
 
-						tbody
-							each list in visit_list
-								tr
-									td= list.user
-									td= list.time
-									td= list.date
+					tbody
+						each list in visit_list
+							tr
+								td= list.user
+								td= list.time
+								td= list.date
