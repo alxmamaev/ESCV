@@ -88,7 +88,7 @@ def room_info(room_id):
 def room_visits(room_id, date_start, date_end):
     db = sqlite.connect("escv.db")
     cur = db.cursor()
-    cur.execute("""SELECT * FROM visits WHERE room_id=%s AND date>="%s" AND date<="%s" """ % (user_id, date_start, date_end))    
+    cur.execute("""SELECT * FROM visits WHERE room_id=%s AND date>="%s" AND date<="%s" """ % (room_id, date_start, date_end))    
     rows = cur.fetchall()
     row_labels = ["user_id","room_id", "date", "time"]
     visits = []

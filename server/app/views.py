@@ -1,8 +1,12 @@
 # -*- coding: utf-8 ?
-from app import app
-from flask import render_template, request
-from app import base
 import time
+
+from flask import render_template, request
+
+from app import app
+from app import export
+from app import base
+
 
 @app.route("/")
 def index():
@@ -30,11 +34,18 @@ def rooms():
 def room(room_id):
     start_date = request.args.get("start_date")
     end_date = request.args.get("end_date")
+    cur_date = time.strftime("%Y-%m-%d")
+
+    if start_date is None: start_date = cur_date
+    if end_date is None: end_date = cur_date
+    
     return render_template("room.jade", room = base.room_info(room_id),
                            visit_list = base.room_visits(room_id, start_date, end_date),
-                           cur_date = time.strftime("%Y-%m-%d"),
+                           cur_date = cur_date,
                            start_date = start_date,
                            end_date = end_date)
+
+
 
 
 @app.route("/new_visit")
