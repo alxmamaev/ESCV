@@ -1,7 +1,7 @@
 # -*- coding: utf-8 ?
 import time
-
-from flask import render_template, request
+import  os
+from flask import render_template, request, send_file
 
 from app import app
 from app import export
@@ -20,11 +20,29 @@ def users():
 def user(user_id):
     start_date = request.args.get("start_date")
     end_date = request.args.get("end_date")
+    cur_date = time.strftime("%Y-%m-%d")
+
+    if start_date is None: start_date = cur_date
+    if end_date is None: end_date = cur_date
+        
     return render_template("user.jade", user = base.user_info(user_id), 
                            visit_list = base.user_visits(user_id, start_date, end_date),
-                           cur_date = time.strftime("%Y-%m-%d"),
+                           cur_date = cur_date,
                            start_date = start_date,
                            end_date = end_date)
+
+@app.route("/user/<int:user_id>/csv")
+def user_csv(user_id):
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
+    cur_date = time.strftime("%Y-%m-%d")
+
+    if start_date is None: start_date = cur_date
+    if end_date is None: end_date = cur_date
+    
+    file_name = export.to_csv(base.user_visits(user_id, start_date, end_date))
+    return send_file(file_name, attachment_filename="test"), 200
+
 
 @app.route("/rooms")
 def rooms():
@@ -46,6 +64,17 @@ def room(room_id):
                            end_date = end_date)
 
 
+@app.route("/rooms/<int:room_id>/csv")
+def room_csv(room_id):
+    start_date = request.args.get("start_date")
+    end_date = request.args.get("end_date")
+    cur_date = time.strftime("%Y-%m-%d")
+
+    if start_date is None: start_date = cur_date
+    if end_date is None: end_date = cur_date
+    
+    file_name = export.to_csv(base.room_visits(room_id, start_date, end_date))
+    return send_file(file_name, attachment_filename="test"), 200
 
 
 @app.route("/new_visit")
