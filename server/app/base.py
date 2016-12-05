@@ -4,7 +4,6 @@ import config
 from app import app
 import time
 import logging
-import pandas
 
 def user_visits(user_id, date_start, date_end):
     db = sqlite.connect("escv.db")
