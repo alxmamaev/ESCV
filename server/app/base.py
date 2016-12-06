@@ -17,6 +17,7 @@ def user_visits(user_id, date_start, date_end):
     for row in rows:
         visit = dict(zip(row_labels, row))
         visit["room"] = room_info(visit["room_id"])["name"]
+        visit["room_id"] = str(visit["room_id"])
         visit["date"] = ".".join(visit["date"].split("-")[::-1])
 
         visits.append(visit)
@@ -96,6 +97,7 @@ def room_visits(room_id, date_start, date_end):
         visit = dict(zip(row_labels, row))
         visit["user"] = user_info(visit["user_id"])["name"]
         visit["date"] = ".".join(visit["date"].split("-")[::-1])        
+        visit["user_id"] = str(visit["user_id"])
         visits.append(visit)
         
     return visits

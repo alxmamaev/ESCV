@@ -19,7 +19,7 @@ block content
 					h4.object-description.flow-text= room.description
 
 		section.table-section.z-depth-1.container.section
-				span.flow-text ТАБЛИЦА ПОСЕЩЕНИЯ
+				span.flow-text ТАБЛИЦА ПОСЕЩЕНИЙ
 
 				a(href="#{room.id}/csv?").right.btn-floating.btn-large.red
 					i.material-icons speaker_notes 	
@@ -33,11 +33,11 @@ block content
 								th Дата
 
 						tbody
-							each list in visit_list
+							each visit in visit_list
 								tr
 									td
-										a(href="/user/"+list.user.id)= list.user.name
-									td= list.time
-									td= list.date
+										a(href="/users/"+visit.user_id)= visit.user
+									td= visit.time
+									td= visit.date
 				else
 					p.flow-text.center Нет данных о посещениях
