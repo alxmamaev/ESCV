@@ -10,9 +10,8 @@ body {
 }
 
 .main-section {
-	max-width: 960px;
 	border-radius: 5px;
-	margin: 100px auto 0;
+	margin-top: 100px;
 	padding: 5px 5px;
 	background: #fff;	
 }
@@ -35,14 +34,12 @@ body {
 
 /* LIST OBJECTS */
 .list-objects-section {
-	max-width: 960px;
-	border-radius: 5px;
-	margin: 100px auto 0;
-	padding: 5px 5px;
-	background: #fff;
+    border-radius: 5px;
+    margin: 100px auto;
+    padding: 5px 15px;
+    background: rgb(255, 255, 255);
 }
 .list-objects-section h1 {
-	font-family: Roboto Light;
 	padding-left: 7px;
 	margin-top: 0;
 }
@@ -68,14 +65,12 @@ body {
 /* CURRENT OBJECT */
 .object-section {
 	background: #fff;
-	max-width: 960px;
 	border-radius: 5px;
-	margin: 100px auto 0;
+	margin-top: 100px;
 	padding: 64px 0;
 }
 
 .object-name {
-	font-family: Roboto Light;
     font-size: 3em;
     text-transform: uppercase;
   	margin-left: -30px;
@@ -83,7 +78,6 @@ body {
 }
 
 .object-description {
-	font-family: Roboto Light;
     font-size: 2em;
   	margin-left: -25px;
 }
@@ -98,9 +92,8 @@ body {
 
 
 .table-section {
-	max-width: 960px;
 	border-radius: 5px;
-	margin: 55px auto 0;
+	margin-top: 55px;
 	padding: 20px;
 	background: #fff;
 }

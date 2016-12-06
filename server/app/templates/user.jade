@@ -7,18 +7,20 @@ block content
 				.center
 					a(href="/").breadcrumb Главная
 					a(href="/users").breadcrumb Пользователи
+					a(href="#").breadcrumb= user.name
 
-		section.object-section.z-depth-1.section.row
-			.col.s5
-				.object-image.circle.z-depth-2(style="background-image: url(#{user.img});")
+		section.object-section.z-depth-1.container.section
+			.row
+				.col.s5
+					.object-image.circle.z-depth-2(style="background-image: url(#{user.img});")
 
-			.col.s7
-				h1.object-name.black-text.flow-text= user.name
-				h4.object-description.black-text.flow-text= user.description
+				.col.s7
+					h1.object-name.flow-text= user.name
+					h4.object-description.flow-text= user.description
 
-		section.table-section.z-depth-1.section.row
+		section.table-section.z-depth-1.container.section
 			span.flow-text ТАБЛИЦА ПОСЕЩЕНИЯ
-			a(href="#{user.id}/csv?").right.btn-floating.btn-large.red
+			a(href="#{user.id}/csv").right.btn-floating.btn-large.red
 				i.material-icons speaker_notes
 
 			if visit_list	

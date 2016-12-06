@@ -7,16 +7,18 @@ block content
 				.center
 					a(href="/").breadcrumb Главная
 					a(href="/rooms").breadcrumb Комнаты
+					a(href="#").breadcrumb= room.name
 
-		section.object-section.z-depth-1.section.row
-			.col.s5
-				.object-image.circle.z-depth-2(style="background-image: url(#{room.img});")
+		section.object-section.z-depth-1.container.section
+			.row
+				.col.s5
+					.object-image.circle.z-depth-2(style="background-image: url(#{room.img});")
 
-			.col.s7
-				h1.object-name.black-text.flow-text= room.name
-				h4.object-description.black-text.flow-text= room.description
+				.col.s7
+					h1.object-name.flow-text= room.name
+					h4.object-description.flow-text= room.description
 
-		section.table-section.z-depth-1.section.row
+		section.table-section.z-depth-1.container.section
 				span.flow-text ТАБЛИЦА ПОСЕЩЕНИЯ
 
 				a(href="#{room.id}/csv?").right.btn-floating.btn-large.red
