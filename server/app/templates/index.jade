@@ -5,22 +5,22 @@ block content
 		nav
 			.nav-wrapper
 				.center
-					a(href="#").breadcrumb ESCV
+					a(href="#").breadcrumb Главная
 
-		section(id="main-section", class="teal lighten-2 section")
-			.container
-				.row
-					h1(class="text-white col s12 center") ЭСУП
+		section.main-section.section.z-depth-1
+			.row
+				.col.s8.block-info
+					h1 ЭСУП
 
-					p.text-black(class="col s8 center offset-s2 flow-text").
+					p.flow-text.
 						Электронная система учета посетителей (ЭСУП) - это совокупность программно аппаратных, технических средств, главной задачей которых является - учет посещений в электронном виде.
 
-				.row.center
-					a(href="/users", class="waves-effect waves-light btn-large red lighten-1") 
+				.col.s3.block-links
+					h1 ПОСЕЩАЕМОСТЬ
+					a(href="/users").waves-effect.waves-light.btn-large.red.lighten-1
 						span ЛЮДИ
 						i.material-icons.left people
-
-				.row.center
-					a(href="/rooms", class="waves-effect waves-light btn-large red lighten-1") 
+					br
+					a(href="/rooms").waves-effect.waves-light.btn-large.red.lighten-1
 						span КОМНАТЫ
 						i.material-icons.left home

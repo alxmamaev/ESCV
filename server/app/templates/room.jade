@@ -5,39 +5,37 @@ block content
 		nav
 			.nav-wrapper
 				.center
-					a(href="/").breadcrumb ESCV
-					a(href="/rooms").breadcrumb Rooms
-					a(href="#").breadcrumb Room
+					a(href="/").breadcrumb Главная
+					a(href="/rooms").breadcrumb Комнаты
 
-		section(id="info-section", class="teal lighten-2 section")
-			.container
-				.row
-					.col.s4
-						.avatar-img.circle(style="background-image: url(#{room.img});")
+		section.object-section.z-depth-1.section.row
+			.col.s5
+				.object-image.circle.z-depth-2(style="background-image: url(#{room.img});")
 
-					.col.s8
-						h1.text-white= room.label
-						h4.text-white= room.description
+			.col.s7
+				h1.object-name.black-text.flow-text= room.name
+				h4.object-description.black-text.flow-text= room.description
 
-		section(id="table-section", class="indigo lighten-5 section")
-			.container
-				.row
-					.col.s3
-						h1.text-black TABLE
-					
-					.col.s9
-						include ./patterns/form_date.jade
-					
-				table.centered.highlight
-					thead
-						tr
-							th Клиент
-							th Время
-							th Дата
+		section.table-section.z-depth-1.section.row
+				span.flow-text ТАБЛИЦА ПОСЕЩЕНИЯ
 
-					tbody
-						each list in visit_list
+				a(href="#{room.id}/csv?").right.btn-floating.btn-large.red
+					i.material-icons speaker_notes 	
+				
+				if visit_list			
+					table.centered.highlight
+						thead
 							tr
-								td= list.user
-								td= list.time
-								td= list.date
+								th Клиент
+								th Время
+								th Дата
+
+						tbody
+							each list in visit_list
+								tr
+									td
+										a(href="/user/"+list.user.id)= list.user.name
+									td= list.time
+									td= list.date
+				else
+					p.flow-text.center Нет данных о посещениях

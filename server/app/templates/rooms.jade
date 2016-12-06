@@ -5,20 +5,23 @@ block content
 		nav
 			.nav-wrapper
 				.center
-					a(href="/").breadcrumb ESCV
-					a(href="/rooms").breadcrumb Rooms
+					a(href="/").breadcrumb Главная
+					a(href="/rooms").breadcrumb Комнаты
 
-		section(id="main-section", class="teal lighten-2 section")
-			.container
-				.row
-					h1.text-white ROOMS
-					
-					ul.collection
-						each room in rooms
+		section.bg-section
 
-							a(href="rooms/#{room.id}")
-								li.collection-item.avatar
+		section.list-objects-section.z-depth-1.section
+			.row
+				each room in rooms
+					.col.s3
+						.card
+							.card-image.waves-effect.waves-block.waves-light
+								a(href="rooms/#{room.id}")
+									.list-object-image(style="background-image: url(#{room.img});")
 
-									img(src=room.img, alt="room", class="circle")
-									span.title= room.name
-									p= room.description
+							.card-content
+								span.card-title.activator.grey-text.text-darken-4.truncate=room.name
+							
+							.card-reveal
+								span.card-title.activator.grey-text.text-darken-4=room.name
+								p.activator= room.description

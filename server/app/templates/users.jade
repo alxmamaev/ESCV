@@ -5,18 +5,21 @@ block content
 		nav
 			.nav-wrapper
 				.center
-					a(href="/").breadcrumb ESCV
-					a(href="/users").breadcrumb Users
+					a(href="/").breadcrumb Главная
+					a(href="/users").breadcrumb Пользователи
 
-		section(id="main-section", class="teal lighten-2 section")
-			.container
-				.row
-					h1.text-white ЛЮДИ
+		section.list-objects-section.z-depth-1.section
+			.row
+				each user in users
+					.col.s3
+						.card
+							.card-image.waves-effect.waves-block.waves-light
+								a(href="users/#{user.id}")
+									.list-object-image(style="background-image: url(#{user.img});")
 
-					ul.collection
-						each user in users
-							a(href="user/#{user.id}")
-								li.collection-item.avatar
-									img(src=user.img, alt="user", class="circle")
-									span.title= user.name
-									p= user.description
+							.card-content
+								span.card-title.activator.grey-text.text-darken-4.truncate=user.name
+							
+							.card-reveal
+								span.card-title.activator.grey-text.text-darken-4=user.name
+								p.activator= user.description
