@@ -1,4 +1,4 @@
-server/__pycache__/
-server/app/__pycache__/
-server/ESCV.wpr
-server/ESCV.wpu
+__pycache__/
+app/__pycache__/
+ESCV.wpr
+ESCV.wpu

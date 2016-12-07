@@ -1,0 +1,16 @@
+{
+  "name": "escv_v4",
+  "description": "The electronic system of calculation of visitors",
+  "main": "./",
+  "authors": [
+    "AZbang",
+    "AlxMamaev"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/alxmamaev/ESCV",
+  "dependencies": {
+    "materialize": "^0.97.7",
+    "jquery": "^3.1.1",
+    "pickadate": "^3.5.6"
+  }
+}

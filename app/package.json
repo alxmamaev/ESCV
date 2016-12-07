@@ -1,8 +1,0 @@
-{
-  "name": "escv_v4",
-  "version": "4.0.0",
-  "description": "The electronic system of calculation of visitors",
-  "main": "./",
-  "author": "AZbang, AlxMamaev",
-  "license": "GPL-3.0"
-}
