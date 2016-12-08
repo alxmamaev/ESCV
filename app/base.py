@@ -111,7 +111,7 @@ def new_visit(user_id=None, rfid_id=None, room_id=None):
     visit_date = time.strftime("%Y-%m-%d")
     
     if user_id is None:
-        cur.execute("SELECT id FROM users WHERE rfid_id = %s" % rfid_id)
+        cur.execute("SELECT id FROM users WHERE rfid_id = \"%s\"" % rfid_id)
         user_id = cur.fetchone()
         if user_id is not None: user_id = user_id[0]
         else: return 1     
