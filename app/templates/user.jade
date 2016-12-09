@@ -20,7 +20,14 @@ block content
 
 		section.table-section.z-depth-1.container.section
 			span.flow-text ТАБЛИЦА ПОСЕЩЕНИЙ
-			a(href="#{user.id}/csv").right.btn-floating.btn-large.red
+
+			a(
+				href = "#{user.id}/csv"
+				class = "right btn-floating btn-large red tooltipped"
+				data-position = "bottom"
+				data-delay = "100"
+				data-tooltip = "Сгенерировать CSV таблицу"
+			)
 				i.material-icons speaker_notes
 
 			if visit_list	
