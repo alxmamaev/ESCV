@@ -1,0 +1,41 @@
+/* ugli code! */
+
+.list-objects-section {
+	border-radius: 5px;
+	margin: 100px auto;
+	padding: 5px 15px;
+	background: rgb(255, 255, 255);
+}
+.list-objects-section h1 {
+	padding-left: 7px;
+	margin-top: 0;
+}
+
+.list-objects-section .card span {
+	font-size: 1.2em;
+}
+.list-objects-section .card-content {
+	padding: 11px;
+}
+.list-objects-section .card {
+	height: 250px;
+}
+
+.list-object-image {
+	height: 180px;
+	background-size: cover;
+	background-position: center center;
+}
+
+
+@media only screen and (max-width: 992px) { 
+	.list-objects-section {
+		margin-top: 50px;
+	}
+}
+
+@media only screen and (max-width: 600px) { 
+	.list-objects-section {
+		margin-top: 20px;
+	}
+}

@@ -1,5 +1,8 @@
 extends ./patterns/layout.jade
 
+block include_css
+	link(rel="stylesheet", href="../../static/css/list.css")
+
 block content
 	.wrap
 		nav
@@ -11,7 +14,7 @@ block content
 		section.list-objects-section.z-depth-1.container.section
 			.row
 				each user in users
-					.col.s3
+					.col.l3.m6.s12
 						.card
 							.card-image.waves-effect.waves-block.waves-light
 								a(href="users/#{user.id}")

@@ -1,108 +1,39 @@
-/* Это временное решение со стилями, в скором времени я наведу здесь порядок @_@ */
-
-@import url(fonts.css);
-
-body {
-    background-image: url(../img/bg.jpeg);
-    background-repeat: repeat-x;
-    background-color: #29a79c;
-    background-size: 555px;
-}
+/* ugli code! */
 
 .main-section {
 	border-radius: 5px;
 	margin-top: 100px;
+	margin-bottom: 100px;
 	padding: 5px 5px;
-	background: #fff;	
+	background: #fff;
+	padding-left: 10px;
 }
 .block-info h1 {
 	font-size: 2em;
-	padding-left: 15px;
 }
 .block-info p {
-	padding-right: 60px;
+	padding-right: 15px;
+}
+.block-links {
 	padding-left: 15px;
 }
 .block-links h1 {
 	font-size: 2em;
 }
 .block-links a {
-	width: 100%;
-	margin-top: 10px;
+	display: block;
+	width: 98%;
 }
 
-
-/* LIST OBJECTS */
-.list-objects-section {
-    border-radius: 5px;
-    margin: 100px auto;
-    padding: 5px 15px;
-    background: rgb(255, 255, 255);
+@media only screen and (max-width: 992px) { 
+	.main-section {
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
 }
-.list-objects-section h1 {
-	padding-left: 7px;
-	margin-top: 0;
-}
-
-.list-objects-section .card span {
-	font-size: 1.2em;
-}
-.list-objects-section .card-content {
-	padding: 11px;
-}
-.list-objects-section .card {
-	height: 250px;
-}
-
-.list-object-image {
-	height: 180px;
-    background-size: cover;
-    background-position: center center;
-}
-
-
-
-/* CURRENT OBJECT */
-.object-section {
-	background: #fff;
-	border-radius: 5px;
-	margin-top: 100px;
-	padding: 64px 0;
-}
-
-.object-name {
-    font-size: 3em;
-    text-transform: uppercase;
-  	margin-left: -30px;
-    margin-top: 10px;
-}
-
-.object-description {
-    font-size: 2em;
-  	margin-left: -25px;
-}
-
-.object-image {
-	margin: auto;
-    width: 300px;
-    height: 300px;
-    background-size: cover;
-    background-position: center center;
-}
-
-
-.table-section {
-	border-radius: 5px;
-	margin-top: 55px;
-	padding: 20px;
-	background: #fff;
-}
-
-
-.table-section span {
-	font-size: 3em;
-}
-
-.table-section i {
-	cursor: pointer;
+@media only screen and (max-width: 600px) { 
+	.main-section {
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
 }

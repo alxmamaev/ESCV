@@ -1,5 +1,8 @@
 extends patterns/layout.jade
 
+block include_css
+	link(rel="stylesheet", href="../../static/css/main.css")
+
 block content
 	.wrap
 		nav
@@ -9,18 +12,18 @@ block content
 
 		section.main-section.z-depth-1.container.section
 			.row
-				.col.s8.block-info
+				.col.offset-m1.m6.s12.block-info
 					h1 ЭСУП
 
 					p.flow-text.
 						Электронная система учета посетителей (ЭСУП) - это совокупность программно аппаратных, технических средств, главной задачей которых является - учет посещений в электронном виде.
 
-				.col.s3.block-links
-					h1 ПОСЕЩАЕМОСТЬ
-					a(href="/users").waves-effect.waves-light.btn-large.red.lighten-1
+				.col.offset-m1.m3.s12.block-links
+					h1 СПИСКИ
+					a(href="/users").center-align.waves-effect.waves-light.btn-large.red.lighten-1
 						span ЛЮДИ
 						i.material-icons.left people
 					br
-					a(href="/rooms").waves-effect.waves-light.btn-large.red.lighten-1
+					a(href="/rooms").center-align.waves-effect.waves-light.btn-large.red.lighten-1
 						span КОМНАТЫ
 						i.material-icons.left home

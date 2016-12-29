@@ -1,5 +1,8 @@
 extends ./patterns/layout.jade
 
+block include_css
+	link(rel="stylesheet", href="../../static/css/object.css")
+
 block content
 	.wrap
 		nav
@@ -7,14 +10,14 @@ block content
 				.center
 					a(href="/").breadcrumb Главная
 					a(href="/users").breadcrumb Пользователи
-					a(href="#").breadcrumb= user.name
+					a(href="#").hide-on-small-only.breadcrumb= user.name
 
 		section.object-section.z-depth-1.container.section
 			.row
-				.col.s5
-					.object-image.circle.z-depth-2(style="background-image: url(#{user.img});")
+				.col.offset-m1.m4.s12
+					.object-image.z-depth-2(style="background-image: url(#{user.img});")
 
-				.col.s7
+				.col.offset-m1.offset-l1.m5.l6.s12.object-info
 					h1.object-name.flow-text= user.name
 					h4.object-description.flow-text= user.description
 
@@ -23,7 +26,7 @@ block content
 
 			a(
 				href = "#{user.id}/csv"
-				class = "right btn-floating btn-large red tooltipped"
+				class = "csv-btn  right btn-floating red tooltipped"
 				data-position = "bottom"
 				data-delay = "100"
 				data-tooltip = "Сгенерировать CSV таблицу"

@@ -1,0 +1,10 @@
+/* Это временное решение со стилями, в скором времени я наведу здесь порядок @_@ */
+
+@import url(fonts.css);
+
+body {
+	background-image: url(../img/bg.jpeg);
+	background-repeat: repeat-x;
+	background-color: #29a79c;
+	background-size: 555px;
+}
