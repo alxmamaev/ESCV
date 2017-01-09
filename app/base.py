@@ -53,7 +53,7 @@ def user_info(user_id):
     user = dict(zip(row_labels, row))
     user["img"] = config.users_img_url % user["id"]
     user["description"] = json.loads(user["description"])
-    user["description"]["keys"] = list(user["description"].keys())
+    
     return user
 
 
@@ -84,7 +84,6 @@ def room_info(room_id):
     room = dict(zip(row_labels, row))
     room["img"] = config.room_img_url % room["id"]
     room["description"] = json.loads(room["description"])
-    room["description"]["keys"] = list(room["description"].keys())
 
     return room
 
