@@ -10,7 +10,6 @@
   "homepage": "https://github.com/alxmamaev/ESCV",
   "dependencies": {
     "materialize": "^0.97.7",
-    "jquery": "^3.1.1",
-    "pickadate": "^3.5.6"
+    "jquery": "^3.1.1"
   }
 }
