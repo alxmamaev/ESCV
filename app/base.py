@@ -8,14 +8,14 @@ import json
 import sqlite3 as sqlite
 
 DATABASE_URL = os.environ.get("DATABASE_URL", default = "escv.db")
-USER_IMAGES_PATH = os.environ.get("USER_IMAGES_PATH")+"user_%s.jpg"
-ROOM_IMAGES_PATH = os.environ.get("ROOM_IMAGES_PATH")+"room_%s.jpg"
+USER_IMAGES_PATH = os.environ.get("USER_IMAGES_PATH", default = "../static/img/users/")+"user_%s.jpg"
+ROOM_IMAGES_PATH = os.environ.get("ROOM_IMAGES_PATH", default = "../static/img/rooms/")+"room_%s.jpg"
 
 def user_visits(user_id, date_start, date_end):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM visits WHERE user_id = "%s" AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
+        cur.execute("""SELECT * FROM visits WHERE user_id = "%s" AND date BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
         rows = cur.fetchall()
 
     row_labels = ["user_id","room_id","date","time"]
@@ -66,7 +66,7 @@ def user_info(user_id):
 
 def rooms_list():
     db = sqlite.connect(DATABASE_URL)
-    with:
+    with db:
         cur = db.cursor()
         cur.execute("SELECT * FROM rooms")
         rows = cur.fetchall()
@@ -101,7 +101,7 @@ def room_visits(room_id, date_start, date_end):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM visits WHERE room_id = "%s" AND BETWEEN "%s" AND "%s" """ % (room_id, date_start, date_end))
+        cur.execute("""SELECT * FROM visits WHERE room_id = "%s" AND date BETWEEN "%s" AND "%s" """ % (room_id, date_start, date_end))
         rows = cur.fetchall()
 
     row_labels = ["user_id","room_id", "date", "time"]

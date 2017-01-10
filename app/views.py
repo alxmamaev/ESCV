@@ -41,7 +41,7 @@ def user_csv(user_id):
     if end_date is None: end_date = cur_date
 
     file_name = export.to_csv(base.user_visits(user_id, start_date, end_date))
-    return send_file(file_name, attachment_filename = "test"), 200
+    return send_file(file_name), 200
 
 
 @app.route("/rooms")
