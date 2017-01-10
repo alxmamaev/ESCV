@@ -3,16 +3,17 @@ import config
 from app import app
 
 import time
+import os
 import json
 import sqlite3 as sqlite
 
 def user_visits(user_id, date_start, date_end):
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-
-    cur.execute("""SELECT * FROM visits WHERE user_id=%s AND date>="%s" AND date<="%s" """ % (user_id, date_start, date_end))
-    rows = cur.fetchall()
-    row_labels = ["user_id","room_id", "date", "time"]
+    with db:
+        cur = db.cursor()
+        cur.execute("""SELECT * FROM visits WHERE user_id=%s AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
+        rows = cur.fetchall()
+    row_labels = ["user_id","room_id","date","time"]
     visits = []
 
     for row in rows:
@@ -20,7 +21,6 @@ def user_visits(user_id, date_start, date_end):
         visit["room"] = room_info(visit["room_id"])["name"]
         visit["room_id"] = str(visit["room_id"])
         visit["date"] = ".".join(visit["date"].split("-")[::-1])
-
         visits.append(visit)
 
     return visits
@@ -28,13 +28,14 @@ def user_visits(user_id, date_start, date_end):
 
 def users_list():
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-    cur.execute("SELECT * FROM users")
+    with db:
+        cur = db.cursor()
+        cur.execute("SELECT * FROM users")
+        rows = cur.fetchall()
 
     row_labels = ["id", "name", "description"]
-    rows = cur.fetchall()
-
     users = []
+
     for row in rows:
         user = dict(zip(row_labels, row))
         user["img"] = config.users_img_url % user["id"]
@@ -44,28 +45,30 @@ def users_list():
 
 def user_info(user_id):
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-    cur.execute("SELECT * FROM users WHERE id = %s" % user_id)
+    with db:
+        cur = db.cursor()
+        cur.execute("SELECT * FROM users WHERE id = %s" % user_id)
+        row = cur.fetchone()
 
     row_labels = ["id", "name", "description"]
-    row = cur.fetchone()
 
     user = dict(zip(row_labels, row))
     user["img"] = config.users_img_url % user["id"]
     user["description"] = json.loads(user["description"])
-    
+
     return user
 
 
 def rooms_list():
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-    cur.execute("SELECT * FROM rooms")
+    with:
+        cur = db.cursor()
+        cur.execute("SELECT * FROM rooms")
+        rows = cur.fetchall()
 
     row_labels = ["id", "name", "description"]
-    rows = cur.fetchall()
-
     rooms = []
+
     for row in rows:
         room = dict(zip(row_labels, row))
         room["img"] = config.room_img_url % room["id"]
@@ -75,11 +78,12 @@ def rooms_list():
 
 def room_info(room_id):
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-    cur.execute("SELECT * FROM rooms WHERE id = %s" % room_id)
+    with db:
+        cur = db.cursor()
+        cur.execute("SELECT * FROM rooms WHERE id = %s" % room_id)
+        row = cur.fetchone()
 
     row_labels = ["id", "name", "description"]
-    row = cur.fetchone()
 
     room = dict(zip(row_labels, row))
     room["img"] = config.room_img_url % room["id"]
@@ -90,9 +94,11 @@ def room_info(room_id):
 
 def room_visits(room_id, date_start, date_end):
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM visits WHERE room_id=%s AND date>="%s" AND date<="%s" """ % (room_id, date_start, date_end))
-    rows = cur.fetchall()
+    with db:
+        cur = db.cursor()
+        cur.execute("""SELECT * FROM visits WHERE room_id=%s AND date>="%s" AND date<="%s" """ % (room_id, date_start, date_end))
+        rows = cur.fetchall()
+
     row_labels = ["user_id","room_id", "date", "time"]
     visits = []
 
@@ -108,10 +114,10 @@ def room_visits(room_id, date_start, date_end):
 
 def new_visit(user_id=None, rfid_id=None, room_id=None):
     db = sqlite.connect("escv.db")
-    cur = db.cursor()
-
-    visit_time = time.strftime("%H:%M")
-    visit_date = time.strftime("%Y-%m-%d")
+    with db:
+        cur = db.cursor()
+        visit_time = time.strftime("%H:%M")
+        visit_date = time.strftime("%Y-%m-%d")
 
     if user_id is None:
         cur.execute("SELECT id FROM users WHERE rfid_id = \"%s\"" % rfid_id)
