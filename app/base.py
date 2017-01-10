@@ -7,6 +7,7 @@ import os
 import json
 import sqlite3 as sqlite
 
+
 def user_visits(user_id, date_start, date_end):
     db = sqlite.connect("escv.db")
     with db:
@@ -114,20 +115,15 @@ def room_visits(room_id, date_start, date_end):
 
 def new_visit(user_id=None, rfid_id=None, room_id=None):
     db = sqlite.connect("escv.db")
+    visit_time = time.strftime("%H:%M")
+    visit_date = time.strftime("%Y-%m-%d")
+
     with db:
         cur = db.cursor()
-        visit_time = time.strftime("%H:%M")
-        visit_date = time.strftime("%Y-%m-%d")
+        if user_id is None:
+            cur.execute("SELECT id FROM users WHERE rfid_id = \"%s\"" % rfid_id)
+            user_id = cur.fetchone()[0]
 
-    if user_id is None:
-        cur.execute("SELECT id FROM users WHERE rfid_id = \"%s\"" % rfid_id)
-        user_id = cur.fetchone()
-        if user_id is not None: user_id = user_id[0]
-        else: return 1
+        cur.execute("""INSERT INTO visits VALUES("%s","%s","%s","%s")""" % (user_id, room_id, visit_date, visit_time))
 
-    with db:
-        cur.execute("INSERT INTO visits VALUES(?,?,?,?)", (user_id, room_id,
-                                                           visit_date, visit_time))
-
-    return "|rfid:%s|user:%s|room:%s|date:%s|time:%s|" % (rfid_id, user_id, room_id,
-                                                               visit_date, visit_time)
+    return "|rfid:%s|user:%s|room:%s|date:%s|time:%s|" % (rfid_id, user_id, room_id, visit_date, visit_time)
