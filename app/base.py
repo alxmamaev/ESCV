@@ -7,7 +7,7 @@ import os
 import json
 import sqlite3 as sqlite
 
-DATABASE_URL = os.environ.get("DATABASE_URL", default="escv.db")
+DATABASE_URL = os.environ.get("DATABASE_URL", default = "escv.db")
 USER_IMAGES_PATH = os.environ.get("USER_IMAGES_PATH")+"user_%s.jpg"
 ROOM_IMAGES_PATH = os.environ.get("ROOM_IMAGES_PATH")+"room_%s.jpg"
 
@@ -15,7 +15,7 @@ def user_visits(user_id, date_start, date_end):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM visits WHERE user_id="%s" AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
+        cur.execute("""SELECT * FROM visits WHERE user_id = "%s" AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
         rows = cur.fetchall()
 
     row_labels = ["user_id","room_id","date","time"]
@@ -52,7 +52,7 @@ def user_info(user_id):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM users WHERE id="%s" """ % user_id)
+        cur.execute("""SELECT * FROM users WHERE id = "%s" """ % user_id)
         row = cur.fetchone()
 
     row_labels = ["id", "name", "description"]
@@ -85,7 +85,7 @@ def room_info(room_id):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM rooms WHERE id="%s" """ % room_id)
+        cur.execute("""SELECT * FROM rooms WHERE id = "%s" """ % room_id)
         row = cur.fetchone()
 
     row_labels = ["id", "name", "description"]
@@ -101,7 +101,7 @@ def room_visits(room_id, date_start, date_end):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM visits WHERE room_id="%s" AND BETWEEN "%s" AND "%s" """ % (room_id, date_start, date_end))
+        cur.execute("""SELECT * FROM visits WHERE room_id = "%s" AND BETWEEN "%s" AND "%s" """ % (room_id, date_start, date_end))
         rows = cur.fetchall()
 
     row_labels = ["user_id","room_id", "date", "time"]
@@ -117,7 +117,7 @@ def room_visits(room_id, date_start, date_end):
     return visits
 
 
-def new_visit(user_id=None, rfid_id=None, room_id=None):
+def new_visit(user_id = None, rfid_id = None, room_id = None):
     db = sqlite.connect(DATABASE_URL)
     visit_time = time.strftime("%H:%M")
     visit_date = time.strftime("%Y-%m-%d")
@@ -125,7 +125,7 @@ def new_visit(user_id=None, rfid_id=None, room_id=None):
     with db:
         cur = db.cursor()
         if user_id is None:
-            cur.execute("""SELECT id FROM users WHERE rfid_id="%s" """ % rfid_id)
+            cur.execute("""SELECT id FROM users WHERE rfid_id = "%s" """ % rfid_id)
             user_id = cur.fetchone()[0]
 
         cur.execute("""INSERT INTO visits VALUES("%s","%s","%s","%s")""" % (user_id, room_id, visit_date, visit_time))
