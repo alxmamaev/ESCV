@@ -8,8 +8,8 @@ import json
 import sqlite3 as sqlite
 
 DATABASE_URL = os.environ.get("DATABASE_URL", default = "escv.db")
-USER_IMAGES_PATH = os.environ.get("USER_IMAGES_PATH", default = "../static/img/users/")+"user_%s.jpg"
-ROOM_IMAGES_PATH = os.environ.get("ROOM_IMAGES_PATH", default = "../static/img/rooms/")+"room_%s.jpg"
+USER_IMAGES_PATH = "../static/img/users/user_%s.jpg"
+ROOM_IMAGES_PATH = "../static/img/rooms/room_%s.jpg"
 
 def user_visits(user_id, date_start, date_end):
     db = sqlite.connect(DATABASE_URL)
