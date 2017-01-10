@@ -14,6 +14,7 @@ def user_visits(user_id, date_start, date_end):
         cur = db.cursor()
         cur.execute("""SELECT * FROM visits WHERE user_id=%s AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
         rows = cur.fetchall()
+
     row_labels = ["user_id","room_id","date","time"]
     visits = []
 
@@ -48,7 +49,7 @@ def user_info(user_id):
     db = sqlite.connect("escv.db")
     with db:
         cur = db.cursor()
-        cur.execute("SELECT * FROM users WHERE id = %s" % user_id)
+        cur.execute("""SELECT * FROM users WHERE id="%s" """ % user_id)
         row = cur.fetchone()
 
     row_labels = ["id", "name", "description"]
@@ -81,7 +82,7 @@ def room_info(room_id):
     db = sqlite.connect("escv.db")
     with db:
         cur = db.cursor()
-        cur.execute("SELECT * FROM rooms WHERE id = %s" % room_id)
+        cur.execute("""SELECT * FROM rooms WHERE id="%s" """ % room_id)
         row = cur.fetchone()
 
     row_labels = ["id", "name", "description"]
@@ -97,7 +98,7 @@ def room_visits(room_id, date_start, date_end):
     db = sqlite.connect("escv.db")
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM visits WHERE room_id=%s AND date>="%s" AND date<="%s" """ % (room_id, date_start, date_end))
+        cur.execute("""SELECT * FROM visits WHERE room_id="%s" AND BETWEEN "%s" AND "%s" """ % (room_id, date_start, date_end))
         rows = cur.fetchall()
 
     row_labels = ["user_id","room_id", "date", "time"]
@@ -121,9 +122,9 @@ def new_visit(user_id=None, rfid_id=None, room_id=None):
     with db:
         cur = db.cursor()
         if user_id is None:
-            cur.execute("SELECT id FROM users WHERE rfid_id = \"%s\"" % rfid_id)
+            cur.execute("""SELECT id FROM users WHERE rfid_id="%s" """ % rfid_id)
             user_id = cur.fetchone()[0]
 
         cur.execute("""INSERT INTO visits VALUES("%s","%s","%s","%s")""" % (user_id, room_id, visit_date, visit_time))
 
-    return "|rfid:%s|user:%s|room:%s|date:%s|time:%s|" % (rfid_id, user_id, room_id, visit_date, visit_time)
+    return "{rfid:%s, user:%s, room:%s, date:%s, time:%s}" % (rfid_id, user_id, room_id, visit_date, visit_time)
