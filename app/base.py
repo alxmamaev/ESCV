@@ -7,9 +7,10 @@ import os
 import json
 import sqlite3 as sqlite
 
+DATABASE_URL = os.environ.get("DATABASE_URL", default="escv.db")
 
 def user_visits(user_id, date_start, date_end):
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
         cur.execute("""SELECT * FROM visits WHERE user_id=%s AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
@@ -29,7 +30,7 @@ def user_visits(user_id, date_start, date_end):
 
 
 def users_list():
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
         cur.execute("SELECT * FROM users")
@@ -46,7 +47,7 @@ def users_list():
     return users
 
 def user_info(user_id):
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
         cur.execute("""SELECT * FROM users WHERE id="%s" """ % user_id)
@@ -62,7 +63,7 @@ def user_info(user_id):
 
 
 def rooms_list():
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     with:
         cur = db.cursor()
         cur.execute("SELECT * FROM rooms")
@@ -79,7 +80,7 @@ def rooms_list():
     return rooms
 
 def room_info(room_id):
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
         cur.execute("""SELECT * FROM rooms WHERE id="%s" """ % room_id)
@@ -95,7 +96,7 @@ def room_info(room_id):
 
 
 def room_visits(room_id, date_start, date_end):
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
         cur.execute("""SELECT * FROM visits WHERE room_id="%s" AND BETWEEN "%s" AND "%s" """ % (room_id, date_start, date_end))
@@ -115,7 +116,7 @@ def room_visits(room_id, date_start, date_end):
 
 
 def new_visit(user_id=None, rfid_id=None, room_id=None):
-    db = sqlite.connect("escv.db")
+    db = sqlite.connect(DATABASE_URL)
     visit_time = time.strftime("%H:%M")
     visit_date = time.strftime("%Y-%m-%d")
 
