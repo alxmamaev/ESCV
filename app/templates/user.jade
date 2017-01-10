@@ -20,13 +20,13 @@ block content
 				.col.offset-m1.offset-l1.m5.l6.s12.object-info
 					h1.object-name.flow-text= user.name
 					
-					if description
-						table.data-tags.highlight
-							tbody
-								each value, key in description
-									tr.tag
-										td(id=key, class="label-tag")= key
-										td(id=key, class="value")= value
+					if user.description
+						ul.data-tags
+							each key, value in user.description.items()
+								li(id=key, class="tag flow-text")
+									span.key= key
+									span : 
+									span.value= value
 					else 
 						p.flow-text Нет данных о человеке
 

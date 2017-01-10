@@ -101,7 +101,7 @@
 		margin-top: 15px;
 	}
 
-	.object-name, .object-description {
+	.object-name, ul.data-tags {
 		padding-left: 10px;
 	}
 
