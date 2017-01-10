@@ -8,12 +8,14 @@ import json
 import sqlite3 as sqlite
 
 DATABASE_URL = os.environ.get("DATABASE_URL", default="escv.db")
+USER_IMAGES_PATH = os.environ.get("USER_IMAGES_PATH")+"user_%s.jpg"
+ROOM_IMAGES_PATH = os.environ.get("ROOM_IMAGES_PATH")+"room_%s.jpg"
 
 def user_visits(user_id, date_start, date_end):
     db = sqlite.connect(DATABASE_URL)
     with db:
         cur = db.cursor()
-        cur.execute("""SELECT * FROM visits WHERE user_id=%s AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
+        cur.execute("""SELECT * FROM visits WHERE user_id="%s" AND BETWEEN "%s" AND "%s" """ % (user_id, date_start, date_end))
         rows = cur.fetchall()
 
     row_labels = ["user_id","room_id","date","time"]
@@ -41,7 +43,7 @@ def users_list():
 
     for row in rows:
         user = dict(zip(row_labels, row))
-        user["img"] = config.users_img_url % user["id"]
+        user["img"] = USER_IMAGES_PATH % user["id"]
         users.append(user)
 
     return users
@@ -56,7 +58,7 @@ def user_info(user_id):
     row_labels = ["id", "name", "description"]
 
     user = dict(zip(row_labels, row))
-    user["img"] = config.users_img_url % user["id"]
+    user["img"] = USER_IMAGES_PATH % user["id"]
     user["description"] = json.loads(user["description"])
 
     return user
@@ -74,7 +76,7 @@ def rooms_list():
 
     for row in rows:
         room = dict(zip(row_labels, row))
-        room["img"] = config.room_img_url % room["id"]
+        room["img"] = ROOM_IMAGES_PATH % room["id"]
         rooms.append(room)
 
     return rooms
@@ -89,7 +91,7 @@ def room_info(room_id):
     row_labels = ["id", "name", "description"]
 
     room = dict(zip(row_labels, row))
-    room["img"] = config.room_img_url % room["id"]
+    room["img"] = ROOM_IMAGES_PATH % room["id"]
     room["description"] = json.loads(room["description"])
 
     return room
