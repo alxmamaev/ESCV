@@ -5,8 +5,11 @@ from app import base
 
 import time
 import  os
+import requests
 
 from flask import render_template, request, send_file
+
+BOT_API = os.environ.get("BOT_API")
 
 @app.route("/")
 def index():
@@ -93,8 +96,15 @@ def new_visit():
     if (rfid_id is None and user_id is None) or room_id is None: return "Opps",404
 
     if rfid_id is not None: req = base.new_visit(rfid_id = rfid_id, room_id = room_id)
-    else: req = base.new_visit(user_id = user_id, room_id = room_id)
+    else: res = base.new_visit(user_id = user_id, room_id = room_id)
 
-    app.logger.info(req)
+    if BOT_API:
+        for token in ["335718", "652094"]:
+            room = base.room_info(res["room"])["name"]
+            user = base.user_info(res["user"])["name"]
+            message = "%s пришел в комнату %s" % (user, room)
+            requests.post(BOT_API, data={"token":token, "message":message})
+
+    app.logger.info(res)
 
     return "Ok",200
