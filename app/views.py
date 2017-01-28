@@ -95,7 +95,7 @@ def new_visit():
 
     if (rfid_id is None and user_id is None) or room_id is None: return "Opps",404
 
-    if rfid_id is not None: req = base.new_visit(rfid_id = rfid_id, room_id = room_id)
+    if rfid_id is not None: res = base.new_visit(rfid_id = rfid_id, room_id = room_id)
     else: res = base.new_visit(user_id = user_id, room_id = room_id)
 
     if BOT_API:
