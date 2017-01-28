@@ -25,24 +25,24 @@ block content
 							each key, value in room.description.items()
 								li(id=key, class="tag flow-text")
 									span.key= key
-									span : 
+									span :
 									span.value= value
-					else 
+					else
 						p.flow-text Нет данных о комнате
 
 		section.table-section.z-depth-1.container.section
 			span.flow-text ТАБЛИЦА ПОСЕЩЕНИЙ
 
 			a(
-				href = "#{room.id}/csv"
+				href = "#{room.id}/csv/"+room.name.replace(" ","-")+".csv"
 				class = "csv-btn right btn-floating red tooltipped"
 				data-position = "bottom"
 				data-delay = "100"
 				data-tooltip = "Сгенерировать CSV таблицу"
 			)
-				i.material-icons speaker_notes 	
-			
-			if visit_list			
+				i.material-icons speaker_notes
+
+			if visit_list
 				table.centered.highlight
 					thead
 						tr

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import random
 import pandas as pd
 from app import base
@@ -8,5 +9,5 @@ def to_csv(visits):
     visits = pd.DataFrame(visits)
     if visits.get("user_id") is not None: visits.pop("user_id")
     if visits.get("room_id") is not None: visits.pop("room_id")
-    visits.to_csv("app/"+file_name, index=False)
-    return file_name
+    visits.to_csv(file_name, index=False)
+    return os.path.abspath(file_name)
