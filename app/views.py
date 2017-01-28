@@ -102,7 +102,7 @@ def new_visit():
         for token in ["335718", "652094"]:
             room = base.room_info(res["room"])["name"]
             user = base.user_info(res["user"])["name"]
-            message = "%s пришел в комнату %s" % (user, room)
+            message = "*%s* пришел в %s" % (user, room)
             requests.post(BOT_API, data={"token":token, "message":message})
 
     app.logger.info(res)
