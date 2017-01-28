@@ -19,22 +19,22 @@ block content
 
 				.col.offset-m1.offset-l1.m5.l6.s12.object-info
 					h1.object-name.flow-text= user.name
-					
+
 					if user.description
 						ul.data-tags
 							each key, value in user.description.items()
 								li(id=key, class="tag flow-text")
 									span.key= key
-									span : 
+									span :
 									span.value= value
-					else 
+					else
 						p.flow-text Нет данных о человеке
 
 		section.table-section.z-depth-1.container.section
 			span.flow-text ТАБЛИЦА ПОСЕЩЕНИЙ
 
 			a(
-				href = "#{user.id}/csv"
+				href = "#{user.id}/csv/"+user.name.replace(" ","-")+".csv"
 				class = "table-btn right btn-floating red tooltipped"
 				data-position = "bottom"
 				data-delay = "100"
@@ -45,7 +45,7 @@ block content
 			span#date-select.table-btn
 
 
-			if visit_list	
+			if visit_list
 				table.centered.highlight
 					thead
 						tr

@@ -32,8 +32,8 @@ def user(user_id):
                            start_date = start_date,
                            end_date = end_date)
 
-@app.route("/users/<int:user_id>/csv")
-def user_csv(user_id):
+@app.route("/users/<int:user_id>/csv/<string:filename>")
+def user_csv(user_id, filename):
     start_date = request.args.get("start_date")
     end_date = request.args.get("end_date")
     cur_date = time.strftime("%Y-%m-%d")
@@ -66,8 +66,8 @@ def room(room_id):
                            end_date = end_date)
 
 
-@app.route("/rooms/<int:room_id>/csv")
-def room_csv(room_id):
+@app.route("/rooms/<int:room_id>/csv/<string:filename>")
+def room_csv(room_id, filename):
     start_date = request.args.get("start_date")
     end_date = request.args.get("end_date")
     cur_date = time.strftime("%Y-%m-%d")
