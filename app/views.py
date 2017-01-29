@@ -82,21 +82,24 @@ def room_csv(room_id, filename):
     return send_file(file_name, attachment_filename = "test"), 200
 
 
-@app.route("/new_visit")
+@app.route("/new_visit", methods=["POST","GET"])
 def new_visit():
     if request.method == "POST":
-        rfid_id = request.form.get("rfid_id")
-        room_id = request.form.get("room_id")
-        user_id = request.form.get("user_id")
+        request.form = dict(request.form)
+        print(request.form)
+        rfid_id = request.form.get("rfid_id", [None])[0]
+        room_id = request.form.get("room_id", [None])[0]
+        user_id = request.form.get("user_id", [None])[0]
     else:
         rfid_id = request.args.get("rfid_id")
         room_id = request.args.get("room_id")
         user_id = request.args.get("user_id")
 
     if (rfid_id is None and user_id is None) or room_id is None: return "Opps",404
-
+    
     if rfid_id is not None: res = base.new_visit(rfid_id = rfid_id, room_id = room_id)
     else: res = base.new_visit(user_id = user_id, room_id = room_id)
+
 
     if BOT_API:
         for token in ["335718", "652094"]:
