@@ -96,18 +96,21 @@ def new_visit():
         user_id = request.args.get("user_id")
 
     if (rfid_id is None and user_id is None) or room_id is None: return "Opps",404
-    
+
+
+
     if rfid_id is not None: res = base.new_visit(rfid_id = rfid_id, room_id = room_id)
     else: res = base.new_visit(user_id = user_id, room_id = room_id)
 
 
-    if BOT_API:
+    if BOT_API and res:
         for token in ["335718", "652094"]:
             room = base.room_info(res["room"])["name"]
             user = base.user_info(res["user"])["name"]
-            message = "*%s* пришел в %s" % (user, room)
+            message = "Пользователь \"*%s*\" пришел в %s" % (user, room)
             requests.post(BOT_API, data={"token":token, "message":message})
 
-    app.logger.info(res)
+    log = res if res else str(user_id or rfid_id)+": FAILED"
+    app.logger.info(log)
 
     return "Ok",200

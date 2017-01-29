@@ -126,8 +126,11 @@ def new_visit(user_id = None, rfid_id = None, room_id = None):
         cur = db.cursor()
         if user_id is None:
             cur.execute("""SELECT id FROM users WHERE rfid_id = "%s" """ % rfid_id)
-            user_id = cur.fetchone()[0]
+            user_id = cur.fetchone()
+
+            if not user_id: return {}
+            user_id = user_id[0]
 
         cur.execute("""INSERT INTO visits VALUES("%s","%s","%s","%s")""" % (user_id, room_id, visit_date, visit_time))
 
-    return {"rfid":rfid_id, "user":user_id, "room":room_id, "date":visit_date, "time":visit_time} 
+    return {"rfid":rfid_id, "user":user_id, "room":room_id, "date":visit_date, "time":visit_time}
