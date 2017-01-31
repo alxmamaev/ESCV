@@ -1,7 +1,5 @@
 form(method="get")
+	.daterange.daterange--double
 
-	input(name="start_date", type="date", value=start_date, max=cur_date)
-	input(name="end_date", type="date", value=end_date, max=cur_date)
-
-	button.btn.waves-effect.waves-light(type="submit") Select
-		i.material-icons.right send
+	input#start_date_input(name="start_date", type="hidden", value=start_date, max=cur_date)
+	input#end_date_input(name="end_date", type="hidden", value=end_date, max=cur_date)

@@ -54,7 +54,12 @@
 .table-section i {
 	cursor: pointer;
 }
-
+.daterange {
+	margin-top: 10px;
+}
+.daterange span {
+	font-size: 1em;
+}
 
 
 @media only screen and (max-width: 992px) { 

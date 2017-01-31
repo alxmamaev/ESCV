@@ -4,17 +4,20 @@ html(lang="en")
 		meta(charset="UTF-8")
 		
 		link(rel="stylesheet", href="../../static/vendor/materialize/dist/css/materialize.min.css", media="screen,projection")
+		link(rel="stylesheet", href="../../static/vendor/BaremetricsCalendar/public/css/application.css")
 		link(rel="stylesheet", href="../../static/css/index.css")
 
 		block include_css
 		
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
-		title Document
+		title ESCV
 	body
 		block content
 
 		script(src="../../static/vendor/jquery/dist/jquery.min.js")
 		script(src="../../static/vendor/materialize/dist/js/materialize.min.js")
-
+		script(src="../../static/vendor/moment/min/moment.min.js")
+		script(src="../../static/vendor/BaremetricsCalendar/public/js/Calendar.js")
+		script(src="../../static/js/main.js")
 		block include_js

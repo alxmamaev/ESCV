@@ -10,6 +10,10 @@
   "homepage": "https://github.com/alxmamaev/ESCV",
   "dependencies": {
     "materialize": "^0.97.7",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "BaremetricsCalendar": "^1.0.10"
+  },
+  "resolutions": {
+    "jquery": ">=2.1.1"
   }
 }

@@ -31,16 +31,20 @@ block content
 						p.flow-text Нет данных о комнате
 
 		section.table-section.z-depth-1.container.section
-			span.flow-text ТАБЛИЦА ПОСЕЩЕНИЙ
-
-			a(
-				href = "#{room.id}/csv/"+room.name.replace(" ","-")+".csv"
-				class = "csv-btn right btn-floating red tooltipped"
-				data-position = "bottom"
-				data-delay = "100"
-				data-tooltip = "Сгенерировать CSV таблицу"
-			)
-				i.material-icons speaker_notes
+			.row
+				span.flow-text.col.s6 ТАБЛИЦА ПОСЕЩЕНИЙ
+				.col.s4
+					include patterns/form_date.jade
+				
+				.col.s2
+					a(
+						href = "#{room.id}/csv/"+room.name.replace(" ","-")+".csv"
+						class = "table-btn right btn-floating red tooltipped"
+						data-position = "bottom"
+						data-delay = "100"
+						data-tooltip = "Сгенерировать CSV таблицу"
+					)
+						i.material-icons speaker_notes
 
 			if visit_list
 				table.centered.highlight
