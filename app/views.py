@@ -19,6 +19,11 @@ def index():
 def users():
     return render_template("users.jade", users = base.users_list())
 
+@app.route("/create_user")
+def create_user():
+    return render_template("creator_user.jade")
+
+
 @app.route("/users/<int:user_id>")
 def user(user_id):
     start_date = request.args.get("start_date")

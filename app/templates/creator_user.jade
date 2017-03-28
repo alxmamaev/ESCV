@@ -1,0 +1,40 @@
+extends ./patterns/layout.jade
+
+block include_css
+	link(rel="stylesheet", href="../../static/css/object.css")
+
+block content
+	.wrap
+		nav
+			.nav-wrapper
+				.center
+					a(href="/").breadcrumb Главная
+					a(href="/rooms").breadcrumb Комнаты
+					a(href="#").hide-on-small-only.breadcrumb Добавить комнату
+
+		section.object-section.z-depth-1.container.section
+			.row
+				form(method="POST").col.s8.offset-s2
+					h1.flow-text(style="margin-left: -10px") Добавить новую комнату:
+					.row
+						.file-field.input-field
+							.btn
+								span SELECT IMAGE
+								input(type="file", name="image")
+							.file-path-wrapper
+								input.file-path.validate
+						.input-field
+							i.material-icons.prefix assignment_ind
+							input(id="label", class="validate", placeholder="ФИО", name="label")
+
+						.input-field
+							i.material-icons.prefix assignment
+							input(id="age", class="validate", placeholder="Возраст", name="age")
+						.input-field
+							i.material-icons.prefix assignment
+							input(id="gender", class="validate", placeholder="Пол", name="gender")
+						.input-field
+							i.material-icons.prefix info_outline
+							input(id="note", class="validate", placeholder="Примечание", name="note")
+						.input-field
+							input(type="submit", class="waves-effect waves-light btn-large col s12") Добавить
