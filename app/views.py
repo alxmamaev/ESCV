@@ -52,6 +52,10 @@ def user_csv(user_id, filename):
 def rooms():
     return render_template("rooms.jade", rooms = base.rooms_list())
 
+@app.route("/create_room")
+def create_room():
+    return render_template("creator_room.jade")
+
 @app.route("/rooms/<int:room_id>")
 def room(room_id):
     start_date = request.args.get("start_date")
