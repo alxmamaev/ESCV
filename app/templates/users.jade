@@ -4,6 +4,10 @@ block include_css
 	link(rel="stylesheet", href="../../static/css/list.css")
 
 block content
+	if is_admin
+		.fixed-action-btn.right
+			a.btn-floating.btn-large.waves-effect.waves-light.red(href="/create_room")
+				i.material-icons add
 	.wrap
 		nav
 			.nav-wrapper
@@ -13,16 +17,23 @@ block content
 
 		section.list-objects-section.z-depth-1.container.section
 			.row
-				each user in users
-					.col.l3.m6.s12
-						.card
-							.card-image.waves-effect.waves-block.waves-light
-								a(href="users/#{user.id}")
-									.list-object-image(style="background-image: url(#{user.img});")
+				if users
+					each user in users
+						.col.l3.m6.s12
+							.card
+								.card-image.waves-effect.waves-block.waves-light
+									a(href="users/#{user.id}")
+										.list-object-image(style="background-image: url(#{user.img});")
 
-							.card-content
-								span.card-title.activator.grey-text.text-darken-4.truncate=user.name
+								.card-content
+									span.card-title.activator.grey-text.text-darken-4.truncate=user.name
 
-							.card-reveal
-								span.card-title.activator.grey-text.text-darken-4=user.name
-								p.activator= user.description
+								.card-reveal
+									span.card-title.activator.grey-text.text-darken-4=user.name
+									p.activator= user.description
+				else
+					if is_admin
+						h1 Список пользователей пуст.
+							a(href="/create_room") Добавьте пользователя
+					else
+						h1 Список пользователей пуст.

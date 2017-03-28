@@ -4,6 +4,10 @@ block include_css
 	link(rel="stylesheet", href="../../static/css/list.css")
 
 block content
+	if is_admin
+		.fixed-action-btn.right
+			a.btn-floating.btn-large.waves-effect.waves-light.red(href="/create_room")
+				i.material-icons add
 	.wrap
 		nav
 			.nav-wrapper
@@ -13,16 +17,23 @@ block content
 
 		section.list-objects-section.z-depth-1.container.section
 			.row
-				each room in rooms
-					.col.l3.m6.s12
-						.card
-							.card-image.waves-effect.waves-block.waves-light
-								a(href="rooms/#{room.id}")
-									.list-object-image(style="background-image: url(#{room.img});")
+				if rooms
+					each room in rooms
+						.col.l3.m6.s12
+							.card
+								.card-image.waves-effect.waves-block.waves-light
+									a(href="rooms/#{room.id}")
+										.list-object-image(style="background-image: url(#{room.img});")
 
-							.card-content
-								span.card-title.activator.grey-text.text-darken-4.truncate=room.name
-							
-							.card-reveal
-								span.card-title.activator.grey-text.text-darken-4=room.name
-								p.activator= room.description
+								.card-content
+									span.card-title.activator.grey-text.text-darken-4.truncate=room.name
+								
+								.card-reveal
+									span.card-title.activator.grey-text.text-darken-4=room.name
+									p.activator= room.description
+				else
+					if is_admin
+						h1 Список комнат пуст.
+							a(href="/create_room") Добавьте комнаты
+					else
+						h1 Список комнат пуст.
