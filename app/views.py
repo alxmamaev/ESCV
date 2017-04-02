@@ -104,7 +104,7 @@ def new_visit():
         room_id = request.args.get("room_id")
         user_id = request.args.get("user_id")
 
-    if (rfid_id is None and user_id is None) or room_id is None: return "Opps",404
+    if (rfid_id is None and user_id is None) or room_id is None: return "Opps",400
 
 
 
